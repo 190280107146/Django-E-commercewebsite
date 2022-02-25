@@ -1,0 +1,64 @@
+{% extends 'shop/basic.html' %}
+
+{% block title %} myCart:Contact{% endblock %}
+{% block body %}
+
+    <div class="container">
+      <div class="container my-4">
+        <h2>Contact Us</h2>
+        <form action="/shop/contact/" method="post"> {% csrf_token %}
+          <div class="form-group mb-3 my-4">
+            <label for="fullname" class="form-label">Your Name</label>
+            <input type="text" name="name" class="form-control" placeholder="Enter your full name" id="fullname" aria-describedby="basic-addon1"/>
+          </div>
+          <div class="form-group my-4">
+            <label for="exampleFormControlInput1" class="form-label">Email address</label>
+            <input type="email" name="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com"/>
+          </div>
+            <div class="form-group my-4">
+            <label for="phone" class="form-label">Phone No</label>
+            <input type="tel" name="phone" class="form-control" id="phone" placeholder="Enter your phone no here"/>
+          </div>
+          <div class="input-group my-4" style="margin-top: 10px">
+            <span class="input-group-text">Write your Query...</span>
+            <textarea name="desc" class="form-control" aria-label="With textarea" placeholder="Enter your query"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary my-4">Submit</button>
+        </form>
+      </div>
+    </div>
+
+{% endblock %}
+{% block js %}
+<script>
+$("#popcart").hide();
+if(localStorage.getItem('cart') == null){
+var cart = {};
+}
+else
+{
+cart = JSON.parse(localStorage.getItem('cart'));
+document.getElementById('cart').innerHTML = Object.keys(cart).length;
+}
+$('.cart').click(function(){
+console.log('clicked');
+var idstr = this.id.toString();
+console.log(idstr);
+if (cart[idstr] !=undefined){
+cart[idstr] = cart[idstr] + 1;
+}
+else
+{
+cart[idstr] = 1;
+}
+console.log(cart);
+localStorage.setItem('cart', JSON.stringify(cart));
+});
+$('#popcart').popover();
+document.getElementById("popcart").setAttribute('data-content', '<h5>Cart for your items in my shopping cart</h5>');
+{% if thank %}
+alert('Your form is submitted successfully.')
+document.location = '/shop';
+{% endif %}
+</script>
+{% endblock %}

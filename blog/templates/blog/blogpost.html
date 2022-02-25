@@ -1,0 +1,43 @@
+{% extends 'blog/basic.html' %}
+{% block title %}MyCart-BlogPost{% endblock %}
+{% block body %}
+<div class="container mt-3">
+<div class="row g-5">
+    <div class="col-md-8">
+      <h3 class="pb-4 mb-4 fst-italic border-bottom">
+        {{post.title}}
+      </h3>
+      <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-width="" data-layout="button_count" data-action="like" data-size="large" data-share="true"></div>
+      <article class="blog-post">
+        <h2 class="blog-post-title">{{post.head0}}</h2>
+        <p>{{post.chead0}}</p>
+
+        <h2>{{post.head1}}</h2>
+        <p>{{post.chead1}}</p>
+
+        <h3>{{post.head2}}</h3>
+        <p>{{post.chead2}}</p>
+        <div class="fb-comments" data-href="http://127.0.0.1:8000/blog/blogpost/{{post.post_id}}" data-width="" data-numposts="1"></div>
+      </article>
+
+
+    </div>
+
+    <div class="col-md-4">
+      <div class="position-sticky" style="top: 2rem;">
+        <div class="p-4 mb-3 bg-light rounded">
+          <h4 class="fst-italic">About</h4>
+          <p class="mb-0">myCart started out as a  small project and is now the latest growing e-commerce stores of all times in India and abroad.</p>
+        </div>
+        <div class="fb-page" data-href="https://www.facebook.com/facebook" data-tabs="timeline" data-width="" data-height="" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/facebook" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/facebook">Meta</a></blockquote></div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script>
+$("#popcart").hide();
+</script>
+{% endblock %}
